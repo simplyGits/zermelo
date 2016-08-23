@@ -1,0 +1,6 @@
+{
+	"presets": [
+		"modern-node/4.4"
+	],
+	"plugins": []
+}

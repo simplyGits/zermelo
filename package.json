@@ -1,0 +1,36 @@
+{
+  "name": "zermelo.js",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/zermelo.js",
+  "engines": {
+	"node": ">=4.4"
+  },
+  "dependencies": {
+	"node-fetch": "^1.6.0"
+  },
+  "devDependencies": {
+	"babel-cli": "^6.11.4",
+	"babel-preset-modern-node": "^2.2.1",
+	"chai": "^3.5.0",
+	"mocha": "^3.0.2"
+  },
+  "scripts": {
+    "build": "babel -s false -d lib/ src/",
+    "prepublish": "npm run build",
+    "test": "mocha --compilers js:babel-register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simplyGits/zermelo.git"
+  },
+  "author": "simplyApps <hello@simplyApps.nl> (http://www.simplyapps.nl/)",
+  "maintainers": [
+    "Lieuwe Rooijakkers <lieuwerooijakkers@gmail.com> (http://www.lieuwe.xyz/)"
+  ],
+  "license": "LGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/simplyGits/zermelo/issues"
+  },
+  "homepage": "https://github.com/simplyGits/zermelo#readme"
+}

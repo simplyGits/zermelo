@@ -1,0 +1,108 @@
+{
+	"parserOptions": {
+		"ecmaVersion": 6,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"experimentalObjectRestSpread": true
+		}
+	},
+	"extends": "eslint:recommended",
+	"rules": {
+		"eqeqeq": [
+			2,
+			"allow-null"
+		],
+
+		"accessor-pairs": 2,
+		"curly": [
+			1,
+			"all"
+		],
+		"dot-location": [
+			1,
+			"property"
+		],
+		"no-empty-function": 2,
+		"no-implied-eval": 2,
+		"no-lone-blocks": 1,
+		"no-new-func": 2,
+		"no-new-wrappers": 2,
+		"no-new": 2,
+		"no-proto": 2,
+		"no-useless-call": 1,
+		"no-void": 1,
+		"radix": 2,
+		"yoda": 2,
+
+		"indent": [
+			2,
+			"tab"
+		],
+		"quotes": [
+			2,
+			"single"
+		],
+		"linebreak-style": [
+			2,
+			"unix"
+		],
+		"semi": [
+			1,
+			"never"
+		],
+		"space-before-blocks": 1,
+
+		"no-console": 1,
+		"no-extra-semi": 1,
+		"comma-dangle": [
+			1,
+			"always-multiline"
+		],
+		"no-undef": 1,
+		"no-dupe-args": 2,
+		"no-dupe-keys": 2,
+		"no-duplicate-case": 2,
+		"no-empty-character-class": 2,
+		"no-empty": 1,
+		"no-invalid-regexp": 2,
+		"no-irregular-whitespace": 2,
+		"no-unreachable": 1,
+		"valid-typeof": 2,
+		"no-unexpected-multiline": 1,
+		"no-unused-vars": 1,
+		"brace-style": [
+			2,
+			"1tbs",
+			{ "allowSingleLine": false }
+		],
+		"eol-last": 2,
+		"no-lonely-if": 1,
+		"object-curly-spacing": [
+			2,
+			"always"
+		],
+
+		"handle-callback-err": 1,
+		"no-path-concat": 2,
+
+		"no-var": 2,
+		"prefer-const": 1,
+		"prefer-spread": 1,
+		"arrow-spacing": [
+			2,
+			{ "before": true, "after": true }
+		],
+		"arrow-parens": [
+			1,
+			"as-needed"
+		]
+	},
+	"env": {
+		"node": true,
+		"es6": true,
+		"mocha": true
+	},
+	"globals": {
+		"__VERSION__": false
+	}
+}
