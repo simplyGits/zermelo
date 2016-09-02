@@ -34,6 +34,20 @@ describe('Zermelo', function () {
 		expect(z).to.be.an.instanceof(zermelo.Zermelo)
 	})
 
+	describe('announcement', function () {
+		it('should fetch announcements', function () {
+			return z.announcements({
+				current: true,
+			}).then(r => {
+				expect(r).to.be.a('array')
+
+				for (const announcement of r) {
+					expect(announcement).to.be.an.instanceof(zermelo.Announcement)
+				}
+			})
+		})
+	})
+
 	describe('appointment', function () {
 		it('should fetch appointments', function () {
 			const d = util.date(new Date)

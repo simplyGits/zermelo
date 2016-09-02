@@ -1,6 +1,7 @@
 import fetch from 'node-fetch'
 import FormData from 'form-data'
 import _ from 'lodash'
+import Announcement from './announcement.js'
 import Appointment from './appointment.js'
 import User from './user.js'
 import * as util from './util.js'
@@ -27,6 +28,29 @@ class Zermelo {
 	_url(slug) {
 		const c = /\?/.test(slug) ? '&' : '?'
 		return `${this.apiUrl}/${slug}${c}access_token=${this.accessToken}`
+	}
+
+	/**
+	 * @method announcements
+	 * @param {Object} options
+	 * 	@param {Boolean} [options.current]
+	 * 	@param {Date} [options.from]
+	 * 	@param {Date} [options.to]
+	 * @return {Promise<Announcement[]>}
+	 */
+	announcements({ current, from, to } = {}) {
+		let slug = ''
+		if (current) {
+			slug += '&current=true'
+		} else if (from != null && to != null) {
+			slug += `&start=${util.urlDate(from)}&end=${util.urlDate(to)}`
+		}
+
+		const url = this._url(`announcements?user=~me${slug}`)
+		return fetch(url)
+		.then(res => res.json())
+		.then(res => res.response.data)
+		.then(items => items.map(a => new Announcement(a)))
 	}
 
 	/**
@@ -105,6 +129,7 @@ export function loginByAuthCode(schoolid, authcode) {
 export const VERSION = __VERSION__
 
 export {
+	Announcement,
 	Appointment,
 	User,
 	Zermelo,
