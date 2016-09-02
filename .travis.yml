@@ -1,0 +1,13 @@
+sudo: false
+language: node_js
+node_js:
+  - node
+install:
+  - npm install -g eslint
+  - npm install
+before_script:
+  - mocha --version
+  - eslint --version
+script:
+  - npm test
+  - eslint ./
