@@ -4,16 +4,18 @@
   "description": "",
   "main": "lib/zermelo.js",
   "engines": {
-	"node": ">=4.4"
+    "node": ">=4.4"
   },
   "dependencies": {
-	"node-fetch": "^1.6.0"
+    "form-data": "^0.2.0",
+    "lodash": "^4.15.0",
+    "node-fetch": "^1.6.0"
   },
   "devDependencies": {
-	"babel-cli": "^6.11.4",
-	"babel-preset-modern-node": "^2.2.1",
-	"chai": "^3.5.0",
-	"mocha": "^3.0.2"
+    "babel-cli": "^6.11.4",
+    "babel-preset-modern-node": "^2.2.1",
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
   },
   "scripts": {
     "build": "babel -s false -d lib/ src/",
