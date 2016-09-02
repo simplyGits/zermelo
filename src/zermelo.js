@@ -2,6 +2,7 @@ import fetch from 'node-fetch'
 import FormData from 'form-data'
 import _ from 'lodash'
 import Appointment from './appointment.js'
+import User from './user.js'
 
 /**
  * @class Zermelo
@@ -48,6 +49,17 @@ class Zermelo {
 		.then(res => res.response.data)
 		.then(items => items.map(i => new Appointment(i)))
 	}
+
+	/**
+	 * @method userInfo
+	 * @return {Promise<User>}
+	 */
+	userInfo() {
+		return fetch(this._url('users/~me'))
+		.then(res => res.json())
+		.then(res => res.response.data[0])
+		.then(res => Object.setPrototypeOf(res, User.prototype))
+	}
 }
 
 export default function zermelo (schoolid, authcode) {
@@ -78,5 +90,6 @@ export const VERSION = __VERSION__
 
 export {
 	Appointment,
+	User,
 	Zermelo,
 }

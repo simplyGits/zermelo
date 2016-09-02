@@ -44,4 +44,12 @@ describe('Zermelo', function () {
 			})
 		})
 	})
+
+	describe('user info', function () {
+		it('should fetch the user info', function () {
+			return z.userInfo().then(r => {
+				expect(r).to.be.an.instanceof(zermelo.User)
+			})
+		})
+	})
 })
