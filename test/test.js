@@ -24,8 +24,10 @@ describe('Zermelo', function () {
 	this.timeout(7000)
 
 	before(function () {
-		const apiUrl = `https://${credentials.schoolid}.zportal.nl/api/v3`
-		z = new zermelo.Zermelo(apiUrl, credentials.sessionInfo)
+		z = zermelo.loginBySessionInfo(
+			credentials.schoolid,
+			credentials.sessionInfo
+		)
 	})
 
 	it('should expose a correct object', function () {

@@ -62,8 +62,29 @@ class Zermelo {
 	}
 }
 
-export default function zermelo (schoolid, authcode) {
-	const apiUrl = `https://${schoolid}.zportal.nl/api/v3`
+function getApiUrl (schoolid) {
+	return `https://${schoolid}.zportal.nl/api/v3`
+}
+
+/**
+ * @method loginBySessionInfo
+ * @param {String} schoolid
+ * @param {Object} sessionInfo
+ * @return {Zermelo}
+ */
+export function loginBySessionInfo (schoolid, sessionInfo) {
+	const apiUrl = getApiUrl(schoolid)
+	return new Zermelo(apiUrl, sessionInfo)
+}
+
+/**
+ * @method loginByAuthCode
+ * @param {String} schoolid
+ * @param {String} authcode
+ * @return {Promise<Zermelo>}
+ */
+export function loginByAuthCode(schoolid, authcode) {
+	const apiUrl = getApiUrl(schoolid)
 	const url = `${apiUrl}/oauth/token`
 	authcode = authcode.replace(/[^0-9]/g, '')
 
@@ -76,10 +97,6 @@ export default function zermelo (schoolid, authcode) {
 		body: form,
 	})
 	.then(r => r.json())
-	.then(r => {
-		console.log(r)
-		return r
-	})
 	.catch(() => {
 		return new Error('invalid authcode')
 	})
