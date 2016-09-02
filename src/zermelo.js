@@ -3,6 +3,7 @@ import FormData from 'form-data'
 import _ from 'lodash'
 import Appointment from './appointment.js'
 import User from './user.js'
+import * as util from './util.js'
 
 /**
  * @class Zermelo
@@ -41,9 +42,7 @@ class Zermelo {
 			to.setDate(to.getDate() + 1)
 		}
 
-		const urlDate = d => Math.floor(d.getTime() / 1000)
-
-		const url = this._url(`appointments?user=~me&start=${urlDate(from)}&end=${urlDate(to)}`)
+		const url = this._url(`appointments?user=~me&start=${util.urlDate(from)}&end=${util.urlDate(to)}`)
 		return fetch(url)
 		.then(res => res.json())
 		.then(res => res.response.data)

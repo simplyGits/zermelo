@@ -15,3 +15,12 @@ export function parseDate (n) {
 export function date (date) {
 	return new Date(date.getFullYear(), date.getMonth(), date.getDate())
 }
+
+/**
+ * @method urlDate
+ * @param {Date} date
+ * @return {Number}
+ */
+export function urlDate (date) {
+	return Math.floor(date.getTime() / 1000)
+}
