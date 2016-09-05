@@ -34,5 +34,6 @@
   "bugs": {
     "url": "https://github.com/simplyGits/zermelo/issues"
   },
-  "homepage": "https://github.com/simplyGits/zermelo#readme"
+  "homepage": "https://github.com/simplyGits/zermelo#readme",
+  "tonicExampleFilename": "tonicdevExample.js"
 }
