@@ -59,6 +59,17 @@ describe('Zermelo', function () {
 				}
 			})
 		})
+
+		it('should fetch only cancelled appointments correctly', function () {
+			const d = util.date(new Date)
+			return z.appointments(d, {
+				cancelled: true,
+			}).then(r => {
+				for (const appointment of r) {
+					expect(appointment.isCancelled).to.be.true
+				}
+			})
+		})
 	})
 
 	describe('user info', function () {

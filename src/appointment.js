@@ -13,7 +13,14 @@ export default class Appointment {
 		 * @type Number
 		 * @final
 		 */
-		this.id = raw.id
+		this.id = raw.appointmentInstance
+		/**
+		 * @property versionId
+		 * @type Number
+		 * @final
+		 */
+		this.versionId = raw.id
+
 		/**
 		 * @property start
 		 * @type Date
@@ -27,42 +34,27 @@ export default class Appointment {
 		 */
 		this.end = util.parseDate(raw.end)
 		/**
+		 * @property beginBySchoolHour
+		 * @type Number
+		 * @final
+		 */
+		this.beginBySchoolHour = raw.startTimeSlot
+		/**
+		 * @property endBySchoolHour
+		 * @type Number
+		 * @final
+		 */
+		this.endBySchoolHour = raw.endTimeSlot
+
+		/**
 		 * @property subjects
 		 * @type String[]
 		 * @final
 		 */
 		this.subjects = raw.subjects
 		/**
-		 * @property teachers
-		 * @type String[]
-		 * @final
-		 */
-		this.teachers = raw.teachers
-		/**
-		 * @property groups
-		 * @type String[]
-		 * @final
-		 */
-		this.groups = raw.groups
-		/**
-		 * @property locations
-		 * @type String[]
-		 * @final
-		 */
-		this.locations = raw.locations
-		/**
-		 * @property locationsOfBranch
-		 * @type String[]
-		 * @final
-		 */
-		this.locationsOfBranch = raw.locationsOfBranch
-		/**
-		 * @property groupsInDepartments
-		 * @type String[]
-		 * @final
-		 */
-		this.groupsInDepartments = raw.groupsInDepartments
-		/**
+		 * One of: 'unknown', 'lesson', 'exam', 'activity', 'choice', 'talk',
+		 * 'other'
 		 * @property type
 		 * @type String
 		 * @final
@@ -74,12 +66,64 @@ export default class Appointment {
 		 * @final
 		 */
 		this.remark = raw.remark
+
 		/**
-		 * @property isValid
+		 * @property locations
+		 * @type String[]
+		 * @final
+		 */
+		this.locations = raw.locations
+
+		/**
+		 * @property teachers
+		 * @type String[]
+		 * @final
+		 */
+		this.teachers = raw.teachers
+		/**
+		 * @property students
+		 * @type String[]
+		 * @final
+		 */
+		this.students = raw.students || []
+		/**
+		 * @property groups
+		 * @type String[]
+		 * @final
+		 */
+		this.groups = raw.groups
+
+		/**
+		 * @property created
+		 * @type Date
+		 * @final
+		 */
+		this.created = util.parseDate(raw.created)
+		/**
+		 * @property lastModified
+		 * @type Date
+		 * @final
+		 */
+		this.lastModified = util.parseDate(raw.lastModified)
+
+		/**
+		 * @property isLatest
 		 * @type Boolean
 		 * @final
 		 */
-		this.isValid = raw.valid
+		this.isLatest = raw.valid
+		/**
+		 * @property isHidden
+		 * @type Boolean
+		 * @final
+		 */
+		this.isHidden = raw.hidden
+		/**
+		 * @property isBase
+		 * @type Boolean
+		 * @final
+		 */
+		this.isBase = raw.base
 		/**
 		 * @property isCancelled
 		 * @type Boolean
@@ -99,64 +143,29 @@ export default class Appointment {
 		 */
 		this.isMoved = raw.moved
 		/**
-		 * @property changeDescription
-		 * @type String
-		 * @final
-		 */
-		this.changeDescription = raw.changeDescription
-		/**
-		 * @property beginBySchoolHour
-		 * @type Number
-		 * @final
-		 */
-		this.beginBySchoolHour = raw.startTimeSlot
-		/**
-		 * @property endBySchoolHour
-		 * @type Number
-		 * @final
-		 */
-		this.endBySchoolHour = raw.endTimeSlot
-		/**
-		 * @property branch
-		 * @type String
-		 * @final
-		 */
-		this.branch = raw.branch
-		/**
-		 * @property branchOfSchool
-		 * @type Number
-		 * @final
-		 */
-		this.branchOfSchool = raw.branchOfSchool
-		/**
-		 * @property created
-		 * @type Date
-		 * @final
-		 */
-		this.created = util.parseDate(raw.created)
-		/**
-		 * @property lastModified
-		 * @type Date
-		 * @final
-		 */
-		this.lastModified = util.parseDate(raw.lastModified)
-		/**
-		 * @property isHidden
-		 * @type Boolean
-		 * @final
-		 */
-		this.isHidden = raw.hidden
-		/**
-		 * @property appointmentInstance
-		 * @type Number
-		 * @final
-		 */
-		this.appointmentInstance = raw.appointmentInstance
-		/**
 		 * @property isNew
 		 * @type Boolean
 		 * @final
 		 */
 		this.isNew = raw.new
+		/**
+		 * @property changeDescription
+		 * @type String
+		 * @final
+		 */
+		this.changeDescription = raw.changeDescription
+
+		/**
+		 * @property branchId
+		 * @type Number
+		 * @final
+		 */
+		this.branchId = raw.branchOfSchool
+		/**
+		 * @property branchStr
+		 * @type String
+		 * @final
+		 */
+		this.branchStr = raw.branch
 	}
 }

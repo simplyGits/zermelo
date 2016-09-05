@@ -56,8 +56,21 @@ class Zermelo {
 
 	/**
 	 * @method appointments
-	 * @param {Date} from
-	 * @param {Date} [to=from]
+	 * @param {Date} from Time will be ignored.
+	 * @param {Date} [to] Time will be ignored. If not given, from+1day will be used.
+	 * @param {Object} [options={}]
+	 * 	@param {Boolean} [options.onlyBase=false] If true only base
+	 * 	apopointments are given.
+	 * 	@param {Boolean} [options.latest] If true only the latest appointments
+	 * 	are given, if false only the non-latest appointments are given, and when
+	 * 	undefined this option is ignored.
+	 * 	@param {Boolean} [options.cancelled] If true only cancelled appointments
+	 * 	are given, if false only non-cancelled appointments are given, and when
+	 * 	undefined this option is ignored.
+	 * 	@param {Boolean} [options.includeHidden=false] Whether or not to include
+	 * 	hidden appointments.
+	 * 	@param {Date} [options.modifiedSince] When this is not undefined,
+	 * 	`options.latest` will be set to undefined.
 	 * @return {Promise<Appointment[]>}
 	 */
 	appointments() {
@@ -67,8 +80,36 @@ class Zermelo {
 			to.setDate(to.getDate() + 1)
 		}
 
-		const url = this._url(`appointments?user=~me&start=${util.urlDate(from)}&end=${util.urlDate(to)}`)
-		return fetch(url)
+		const options = _.find(arguments, _.isPlainObject) || {}
+		let {
+			onlyBase = false,
+			latest,
+			cancelled,
+			includeHidden = false,
+			modifiedSince,
+		} = options
+
+		let url = `appointments?user=~me&start=${util.urlDate(from)}&end=${util.urlDate(to)}`
+
+		if (modifiedSince != null) {
+			url += `&modifiedSince=${util.urlDate(modifiedSince)}`
+			latest = false
+		}
+
+		if (onlyBase != null) {
+			url += `&base=${onlyBase}`
+		}
+		if (latest != null) {
+			url += `&valid=${latest}`
+		}
+		if (cancelled != null) {
+			url += `&cancelled=${cancelled}`
+		}
+		if (includeHidden != null) {
+			url += `&includeHidden=${includeHidden}`
+		}
+
+		return fetch(this._url(url))
 		.then(res => res.json())
 		.then(res => res.response.data)
 		.then(items => items.map(i => new Appointment(i)))
