@@ -7,35 +7,17 @@
 export default class User {
 	constructor(raw) {
 		/**
-		 * @property code
+		 * @property id
 		 * @type String
 		 * @final
 		 */
-		this.code = raw.code
+		this.id = raw.code
 		/**
 		 * @property roles
 		 * @type String[]
 		 * @final
 		 */
 		this.roles = raw.roles
-		/**
-		 * @property isStudent
-		 * @type Boolean
-		 * @final
-		 */
-		this.isStudent = raw.isStudent
-		/**
-		 * @property isEmployee
-		 * @type Boolean
-		 * @final
-		 */
-		this.isEmployee = raw.isEmployee
-		/**
-		 * @property isFamilyMember
-		 * @type Boolean
-		 * @final
-		 */
-		this.isFamilyMember = raw.isFamilyMember
 		/**
 		 * @property firstName
 		 * @type String
@@ -54,6 +36,26 @@ export default class User {
 		 * @final
 		 */
 		this.lastName = raw.lastName
+
+		/**
+		 * @property email
+		 * @type String
+		 * @final
+		 */
+		this.email = raw.email
+		/**
+		 * @property username
+		 * @type String
+		 * @final
+		 */
+		this.username = raw.username
+		/**
+		 * @property password
+		 * @type String
+		 * @final
+		 */
+		this.password = raw.password
+
 		/**
 		 * @property isApplicationManager
 		 * @type Boolean
@@ -108,5 +110,23 @@ export default class User {
 		 * @final
 		 */
 		this.isDean = raw.isDean
+		/**
+		 * @property isStudent
+		 * @type Boolean
+		 * @final
+		 */
+		this.isStudent = raw.isStudent
+		/**
+		 * @property isEmployee
+		 * @type Boolean
+		 * @final
+		 */
+		this.isEmployee = raw.isEmployee
+		/**
+		 * @property isFamilyMember
+		 * @type Boolean
+		 * @final
+		 */
+		this.isFamilyMember = raw.isFamilyMember
 	}
 }
