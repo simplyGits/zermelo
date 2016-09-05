@@ -103,12 +103,12 @@ export function loginBySessionInfo (schoolid, sessionInfo) {
 }
 
 /**
- * @method loginByAuthCode
+ * @method createSession
  * @param {String} schoolid
  * @param {String} authcode
- * @return {Promise<Zermelo>}
+ * @return {Promise<Object>}
  */
-export function loginByAuthCode(schoolid, authcode) {
+export function createSession (schoolid, authcode) {
 	const apiUrl = getApiUrl(schoolid)
 	const url = `${apiUrl}/oauth/token`
 	authcode = authcode.replace(/[^0-9]/g, '')
@@ -121,11 +121,10 @@ export function loginByAuthCode(schoolid, authcode) {
 		method: 'POST',
 		body: form,
 	})
-	.then(r => r.json())
 	.catch(() => {
-		return new Error('invalid authcode')
+		throw new Error('invalid authcode')
 	})
-	.then(r => new Zermelo(apiUrl, r))
+	.then(r => r.json())
 }
 
 export const VERSION = __VERSION__
