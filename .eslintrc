@@ -86,7 +86,7 @@
 		"no-path-concat": 2,
 
 		"no-var": 2,
-		"prefer-const": 1,
+		// "prefer-const": 1,
 		"prefer-spread": 1,
 		"arrow-spacing": [
 			2,
