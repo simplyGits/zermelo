@@ -32,18 +32,18 @@ class Zermelo {
 
 	/**
 	 * @method announcements
-	 * @param {Object} options
-	 * 	@param {Boolean} [options.current]
+	 * @param {Object} [options={}]
+	 * 	@param {Boolean} [options.current=true]
 	 * 	@param {Date} [options.from]
 	 * 	@param {Date} [options.to]
 	 * @return {Promise<Announcement[]>}
 	 */
-	announcements({ current, from, to } = {}) {
+	announcements({ current = true, from, to } = {}) {
 		let slug = ''
-		if (current) {
-			slug += '&current=true'
-		} else if (from != null && to != null) {
+		if (from != null && to != null) {
 			slug += `&start=${util.urlDate(from)}&end=${util.urlDate(to)}`
+		} else if (current) {
+			slug += '&current=true'
 		}
 
 		const url = this._url(`announcements?user=~me${slug}`)
