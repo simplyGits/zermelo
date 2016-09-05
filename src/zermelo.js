@@ -51,6 +51,7 @@ class Zermelo {
 		.then(res => res.json())
 		.then(res => res.response.data)
 		.then(items => items.map(a => new Announcement(a)))
+		.then(items => _.sortBy(items, 'start'))
 	}
 
 	/**
@@ -71,6 +72,7 @@ class Zermelo {
 		.then(res => res.json())
 		.then(res => res.response.data)
 		.then(items => items.map(i => new Appointment(i)))
+		.then(items => _.sortBy(items, 'start'))
 	}
 
 	/**
