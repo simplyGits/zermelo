@@ -80,3 +80,29 @@ describe('Zermelo', function () {
 		})
 	})
 })
+
+describe('util', function () {
+	describe('dates', function () {
+		it('should be able to get the date of a Date object', function () {
+			const a = new Date(2016, 4, 20, 13, 37, 69)
+			const b = new Date(2016, 4, 20)
+			expect(util.date(a).getTime()).to.equal(b.getTime())
+		})
+
+		it('should correctly convert a date to unix timestamps', function () {
+			const a = new Date(2016, 3, 22)
+			const b = 1461276000
+			expect(util.urlDate(a)).to.equal(b)
+		})
+
+		it('should parse unix timestamps correctly', function () {
+			const t = 1461276000000
+			const d = new Date(t)
+
+			const parsed = util.parseDate(t / 1000)
+
+			expect(parsed).to.be.a('Date')
+			expect(parsed.getTime()).to.equal(d.getTime())
+		})
+	})
+})
