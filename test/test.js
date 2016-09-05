@@ -90,9 +90,9 @@ describe('util', function () {
 		})
 
 		it('should correctly convert a date to unix timestamps', function () {
-			const a = new Date(2016, 3, 22)
-			const b = 1461276000
-			expect(util.urlDate(a)).to.equal(b)
+			const t = 1461276000
+			const d = new Date(t * 1000)
+			expect(util.urlDate(d)).to.equal(t)
 		})
 
 		it('should parse unix timestamps correctly', function () {
