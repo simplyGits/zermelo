@@ -162,10 +162,10 @@ export function createSession (schoolid, authcode) {
 		method: 'POST',
 		body: form,
 	})
+	.then(r => r.json())
 	.catch(() => {
 		throw new Error('invalid authcode')
 	})
-	.then(r => r.json())
 }
 
 export const VERSION = __VERSION__
