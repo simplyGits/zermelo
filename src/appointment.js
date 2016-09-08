@@ -1,171 +1,148 @@
 import * as util from './util.js'
 
 /**
- * @class Appointment
- * @constructor
  * @private
- * @param {Object} raw
  */
-export default class Appointment {
+class Appointment {
+	/**
+	 * @param {Object} raw
+	 */
 	constructor(raw) {
 		/**
-		 * @property id
 		 * @type Number
-		 * @final
+		 * @readonly
 		 */
 		this.id = raw.appointmentInstance
 		/**
-		 * @property versionId
 		 * @type Number
-		 * @final
+		 * @readonly
 		 */
 		this.versionId = raw.id
 
 		/**
-		 * @property start
 		 * @type Date
-		 * @final
+		 * @readonly
 		 */
 		this.start = util.parseDate(raw.start)
 		/**
-		 * @property end
 		 * @type String
-		 * @final
+		 * @readonly
 		 */
 		this.end = util.parseDate(raw.end)
 		/**
-		 * @property beginBySchoolHour
 		 * @type Number
-		 * @final
+		 * @readonly
 		 */
 		this.beginBySchoolHour = raw.startTimeSlot
 		/**
-		 * @property endBySchoolHour
 		 * @type Number
-		 * @final
+		 * @readonly
 		 */
 		this.endBySchoolHour = raw.endTimeSlot
 
 		/**
-		 * @property subjects
 		 * @type String[]
-		 * @final
+		 * @readonly
 		 */
 		this.subjects = raw.subjects
 		/**
 		 * One of: 'unknown', 'lesson', 'exam', 'activity', 'choice', 'talk',
 		 * 'other'
-		 * @property type
 		 * @type String
-		 * @final
+		 * @readonly
 		 */
 		this.type = raw.type
 		/**
-		 * @property remark
 		 * @type String
-		 * @final
+		 * @readonly
 		 */
 		this.remark = raw.remark
 
 		/**
-		 * @property locations
 		 * @type String[]
-		 * @final
+		 * @readonly
 		 */
 		this.locations = raw.locations
 
 		/**
-		 * @property teachers
 		 * @type String[]
-		 * @final
+		 * @readonly
 		 */
 		this.teachers = raw.teachers
 		/**
-		 * @property students
 		 * @type String[]
-		 * @final
+		 * @readonly
 		 */
 		this.students = raw.students || []
 		/**
-		 * @property groups
 		 * @type String[]
-		 * @final
+		 * @readonly
 		 */
 		this.groups = raw.groups
 
 		/**
-		 * @property created
 		 * @type Date
-		 * @final
+		 * @readonly
 		 */
 		this.created = util.parseDate(raw.created)
 		/**
-		 * @property lastModified
 		 * @type Date
-		 * @final
+		 * @readonly
 		 */
 		this.lastModified = util.parseDate(raw.lastModified)
 
 		/**
-		 * @property isLatest
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isLatest = raw.valid
 		/**
-		 * @property isHidden
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isHidden = raw.hidden
 		/**
-		 * @property isBase
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isBase = raw.base
 		/**
-		 * @property isCancelled
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isCancelled = raw.cancelled
 		/**
-		 * @property isModified
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isModified = raw.modified
 		/**
-		 * @property isMoved
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isMoved = raw.moved
 		/**
-		 * @property isNew
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isNew = raw.new
 		/**
-		 * @property changeDescription
 		 * @type String
-		 * @final
+		 * @readonly
 		 */
 		this.changeDescription = raw.changeDescription
 
 		/**
-		 * @property branchId
 		 * @type Number
-		 * @final
+		 * @readonly
 		 */
 		this.branchId = raw.branchOfSchool
 		/**
-		 * @property branchStr
 		 * @type String
-		 * @final
+		 * @readonly
 		 */
 		this.branchStr = raw.branch
 	}
 }
+
+export default Appointment

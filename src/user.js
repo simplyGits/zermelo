@@ -1,132 +1,114 @@
 /**
- * @class User
- * @constructor
  * @private
- * @param {Object} raw
  */
-export default class User {
+class User {
+	/**
+	 * @param {Object} raw
+	 */
 	constructor(raw) {
 		/**
-		 * @property id
 		 * @type String
-		 * @final
+		 * @readonly
 		 */
 		this.id = raw.code
 		/**
-		 * @property roles
 		 * @type String[]
-		 * @final
+		 * @readonly
 		 */
 		this.roles = raw.roles
 		/**
-		 * @property firstName
 		 * @type String
-		 * @final
+		 * @readonly
 		 */
 		this.firstName = raw.firstName
 		/**
-		 * @property prefix
 		 * @type String
-		 * @final
+		 * @readonly
 		 */
 		this.prefix = raw.prefix
 		/**
-		 * @property lastName
 		 * @type String
-		 * @final
+		 * @readonly
 		 */
 		this.lastName = raw.lastName
 
 		/**
-		 * @property email
 		 * @type String
-		 * @final
+		 * @readonly
 		 */
 		this.email = raw.email
 		/**
-		 * @property username
 		 * @type String
-		 * @final
+		 * @readonly
 		 */
 		this.username = raw.username
 		/**
-		 * @property password
 		 * @type String
-		 * @final
+		 * @readonly
 		 */
 		this.password = raw.password
 
 		/**
-		 * @property isApplicationManager
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isApplicationManager = raw.isApplicationManager
 		/**
-		 * @property isSchoolScheduler
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isSchoolScheduler = raw.isSchoolScheduler
 		/**
-		 * @property isSchoolLeader
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isSchoolLeader = raw.isSchoolLeader
 		/**
-		 * @property isStudentAdministrator
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isStudentAdministrator = raw.isStudentAdministrator
 		/**
-		 * @property isBranchLeader
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isBranchLeader = raw.isBranchLeader
 		/**
-		 * @property isTeamLeader
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isTeamLeader = raw.isTeamLeader
 		/**
-		 * @property isMentor
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isMentor = raw.isMentor
 		/**
-		 * @property isParentTeacherNightScheduler
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isParentTeacherNightScheduler = raw.isParentTeacherNightScheduler
 		/**
-		 * @property isDean
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isDean = raw.isDean
 		/**
-		 * @property isStudent
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isStudent = raw.isStudent
 		/**
-		 * @property isEmployee
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isEmployee = raw.isEmployee
 		/**
-		 * @property isFamilyMember
 		 * @type Boolean
-		 * @final
+		 * @readonly
 		 */
 		this.isFamilyMember = raw.isFamilyMember
 	}
 }
+
+export default User

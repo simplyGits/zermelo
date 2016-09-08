@@ -1,42 +1,39 @@
 import * as util from './util.js'
 
 /**
- * @class Announcement
- * @constructor
  * @private
- * @param {Object} raw
  */
-export default class Announcement {
+class Announcement {
+	/**
+	 * @param {Object} raw
+	 */
 	constructor(raw) {
 		/**
-		 * @property id
 		 * @type String
-		 * @final
+		 * @readonly
 		 */
 		this.id = raw.id
 		/**
-		 * @property start
 		 * @type Date
-		 * @final
+		 * @readonly
 		 */
 		this.start = util.parseDate(raw.start)
 		/**
-		 * @property end
 		 * @type Date
-		 * @final
+		 * @readonly
 		 */
 		this.end = util.parseDate(raw.end)
 		/**
-		 * @property title
 		 * @type String
-		 * @final
+		 * @readonly
 		 */
 		this.title = raw.title
 		/**
-		 * @property text
 		 * @type String
-		 * @final
+		 * @readonly
 		 */
 		this.text = raw.text
 	}
 }
+
+export default Announcement

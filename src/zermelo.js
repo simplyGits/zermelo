@@ -7,14 +7,15 @@ import User from './user.js'
 import * as util from './util.js'
 
 /**
- * @class Zermelo
- * @constructor
- * @param {String} apiUrl
- * @param {Object} sessionInfo
- * 	@param {Number} sessionInfo.expires_in
- * 	@param {String} sessionInfo.access_token
+ * @private
  */
 class Zermelo {
+	/**
+	 * @param {String} apiUrl
+	 * @param {Object} sessionInfo
+	 * 	@param {Number} sessionInfo.expires_in
+	 * 	@param {String} sessionInfo.access_token
+	 */
 	constructor(apiUrl, sessionInfo) {
 		this.apiUrl = apiUrl
 
@@ -31,7 +32,6 @@ class Zermelo {
 	}
 
 	/**
-	 * @method announcements
 	 * @param {Object} [options={}]
 	 * 	@param {Boolean} [options.current=true]
 	 * 	@param {Date} [options.from]
@@ -55,7 +55,6 @@ class Zermelo {
 	}
 
 	/**
-	 * @method appointments
 	 * @param {Date} from Time will be ignored.
 	 * @param {Date} [to] Time will be ignored. If not given, from+1day will be used.
 	 * @param {Object} [options={}]
@@ -117,7 +116,6 @@ class Zermelo {
 	}
 
 	/**
-	 * @method userInfo
 	 * @return {Promise<User>}
 	 */
 	userInfo() {
