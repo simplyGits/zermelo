@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>zermelo.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Announcement.html">Announcement</a></li><li><a href="Appointment.html">Appointment</a></li><li><a href="User.html">User</a></li><li><a href="Zermelo.html">Zermelo</a><ul class='methods'><li data-type='method'><a href="Zermelo.html#announcements">announcements</a></li><li data-type='method'><a href="Zermelo.html#appointments">appointments</a></li><li data-type='method'><a href="Zermelo.html#userInfo">userInfo</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#createSession">createSession</a></li><li><a href="global.html#loginBySessionInfo">loginBySessionInfo</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">zermelo.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import fetch from 'node-fetch'
+import FormData from 'form-data'
+import _ from 'lodash'
+import Announcement from './announcement.js'
+import Appointment from './appointment.js'
+import User from './user.js'
+import * as util from './util.js'
+
+/**
+ * @private
+ */
+class Zermelo {
+	/**
+	 * @param {String} apiUrl
+	 * @param {Object} sessionInfo
+	 * 	@param {Number} sessionInfo.expires_in
+	 * 	@param {String} sessionInfo.access_token
+	 */
+	constructor(apiUrl, sessionInfo) {
+		this.apiUrl = apiUrl
+
+		const d = new Date()
+		d.setSeconds(d.getSeconds() + sessionInfo.expires_in)
+		this.expireDate = d
+
+		this.accessToken = sessionInfo.access_token
+	}
+
+	_url(slug) {
+		const c = /\?/.test(slug) ? '&amp;' : '?'
+		return `${this.apiUrl}/${slug}${c}access_token=${this.accessToken}`
+	}
+
+	/**
+	 * @param {Object} [options={}]
+	 * 	@param {Boolean} [options.current=true]
+	 * 	@param {Date} [options.from]
+	 * 	@param {Date} [options.to]
+	 * @return {Promise&lt;Announcement[]>}
+	 */
+	announcements({ current = true, from, to } = {}) {
+		let slug = ''
+		if (from != null &amp;&amp; to != null) {
+			slug += `&amp;start=${util.urlDate(from)}&amp;end=${util.urlDate(to)}`
+		} else if (current) {
+			slug += '&amp;current=true'
+		}
+
+		const url = this._url(`announcements?user=~me${slug}`)
+		return fetch(url)
+		.then(res => res.json())
+		.then(res => res.response.data)
+		.then(items => items.map(a => new Announcement(a)))
+		.then(items => _.sortBy(items, 'start'))
+	}
+
+	/**
+	 * @param {Date} from Time will be ignored.
+	 * @param {Date} [to] Time will be ignored. If not given, from+1day will be used.
+	 * @param {Object} [options={}]
+	 * 	@param {Boolean} [options.onlyBase=false] If true only base
+	 * 	apopointments are given.
+	 * 	@param {Boolean} [options.latest] If true only the latest appointments
+	 * 	are given, if false only the non-latest appointments are given, and when
+	 * 	undefined this option is ignored.
+	 * 	@param {Boolean} [options.cancelled] If true only cancelled appointments
+	 * 	are given, if false only non-cancelled appointments are given, and when
+	 * 	undefined this option is ignored.
+	 * 	@param {Boolean} [options.includeHidden=false] Whether or not to include
+	 * 	hidden appointments.
+	 * 	@param {Date} [options.modifiedSince] When this is not undefined,
+	 * 	`options.latest` will be set to undefined.
+	 * @return {Promise&lt;Appointment[]>}
+	 */
+	appointments() {
+		let [ from, to ] = _(arguments).filter(_.isDate).sortBy().value()
+		if (to == null) {
+			to = new Date(from)
+			to.setDate(to.getDate() + 1)
+		}
+
+		const options = _.find(arguments, _.isPlainObject) || {}
+		let {
+			onlyBase = false,
+			latest,
+			cancelled,
+			includeHidden = false,
+			modifiedSince,
+		} = options
+
+		let url = `appointments?user=~me&amp;start=${util.urlDate(from)}&amp;end=${util.urlDate(to)}`
+
+		if (modifiedSince != null) {
+			url += `&amp;modifiedSince=${util.urlDate(modifiedSince)}`
+			latest = false
+		}
+
+		if (onlyBase != null) {
+			url += `&amp;base=${onlyBase}`
+		}
+		if (latest != null) {
+			url += `&amp;valid=${latest}`
+		}
+		if (cancelled != null) {
+			url += `&amp;cancelled=${cancelled}`
+		}
+		if (includeHidden != null) {
+			url += `&amp;includeHidden=${includeHidden}`
+		}
+
+		return fetch(this._url(url))
+		.then(res => res.json())
+		.then(res => res.response.data)
+		.then(items => items.map(i => new Appointment(i)))
+		.then(items => _.sortBy(items, 'start'))
+	}
+
+	/**
+	 * @return {Promise&lt;User>}
+	 */
+	userInfo() {
+		return fetch(this._url('users/~me'))
+		.then(res => res.json())
+		.then(res => res.response.data[0])
+		.then(res => Object.setPrototypeOf(res, User.prototype))
+	}
+}
+
+function getApiUrl (schoolid) {
+	return `https://${schoolid}.zportal.nl/api/v3`
+}
+
+/**
+ * @method loginBySessionInfo
+ * @param {String} schoolid
+ * @param {Object} sessionInfo
+ * @return {Zermelo}
+ */
+export function loginBySessionInfo (schoolid, sessionInfo) {
+	const apiUrl = getApiUrl(schoolid)
+	return new Zermelo(apiUrl, sessionInfo)
+}
+
+/**
+ * @method createSession
+ * @param {String} schoolid
+ * @param {String} authcode
+ * @return {Promise&lt;Object>}
+ */
+export function createSession (schoolid, authcode) {
+	const apiUrl = getApiUrl(schoolid)
+	const url = `${apiUrl}/oauth/token`
+	authcode = authcode.replace(/[^0-9]/g, '')
+
+	const form = new FormData()
+	form.append('grant_type', 'authorization_code')
+	form.append('code', authcode)
+
+	return fetch(url, {
+		method: 'POST',
+		body: form,
+	})
+	.then(r => r.json())
+	.catch(() => {
+		throw new Error('invalid authcode')
+	})
+}
+
+export const VERSION = __VERSION__
+
+export {
+	Announcement,
+	Appointment,
+	User,
+	Zermelo,
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Sep 08 2016 21:12:12 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>
