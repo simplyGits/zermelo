@@ -15,12 +15,15 @@
     "babel-cli": "^6.11.4",
     "babel-preset-modern-node": "^3.2.0",
     "chai": "^3.5.0",
+    "docdash": "^0.4.0",
+    "jsdoc": "^3.4.0",
     "mocha": "^3.0.2"
   },
   "scripts": {
     "build": "babel -s false -d lib/ src/",
     "prepublish": "npm run build",
-    "test": "mocha --compilers js:babel-register"
+    "test": "mocha --compilers js:babel-register",
+    "docs": "jsdoc --configure .jsdoc.json --verbose"
   },
   "repository": {
     "type": "git",
