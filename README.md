@@ -1,4 +1,4 @@
-zermelo.js
+# zermelo.js
 
 ==========
 
@@ -18,13 +18,11 @@ const { createSession, loginBySessionInfo } = require('zermelo.js');
 
 // Replace every '<thing>' with your credentials:
 
-const { createSession, loginBySessionInfo } = require('zermelo');
-
 // create a session
 createSession('<schoolid>', '<authcode>')
-	.then(sessionInfo => loginBySessionInfo(sessionInfo)) // create an Zermelo instance using the created session
+	.then(sessionInfo => loginBySessionInfo('<schoolid>', sessionInfo)) // create an Zermelo instance using the created session
 	.then(zermelo => zermelo.userInfo()) // get the info of the logged in user
-	.then(m => console.log(`Hey ${userInfo.firstName}!`)) // say hi
+	.then(user => console.log(`Hey ${user.firstName}!`)) // say hi
 	.catch(err => console.error('something went wrong:', err)); // something went wrong
 ```
 
