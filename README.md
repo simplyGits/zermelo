@@ -28,12 +28,12 @@ createSession('<schoolid>', '<authcode>')
 
 Useful links
 ===
-* TODO: Documentation
+* Documentation: http://www.simplyapps.nl/zermelo/index.html
 
 Before creating issues
 ===
 1. Update all your packages with `npm update`
-2. Be sure you haven't made a typo and your code is correct (check the docs)
+2. Be sure you haven't made a typo and your code is correct (check the [docs](http://www.simplyapps.nl/zermelo/index.html))
 3. Don't create issues which occur in a modified version
 
 Contributing
