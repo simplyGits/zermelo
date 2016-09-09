@@ -87,6 +87,14 @@ describe('Zermelo', function () {
 			})
 		})
 	})
+
+	describe('school', function () {
+		it('should fetch the user\'s school', function () {
+			return z.school().then(r => {
+				expect(r).to.be.an.instanceof(zermelo.School)
+			})
+		})
+	})
 })
 
 describe('util', function () {

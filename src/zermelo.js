@@ -7,6 +7,7 @@ import FormData from 'form-data'
 import _ from 'lodash'
 import Announcement from './announcement.js'
 import Appointment from './appointment.js'
+import School from './school.js'
 import SessionInfo from './sessionInfo.js'
 import User from './user.js'
 import * as util from './util.js'
@@ -141,6 +142,17 @@ class Zermelo {
 		.then(res => res.response.data[0])
 		.then(res => new User(res))
 	}
+
+	/**
+	 * @return {Promise<School>}
+	 */
+	school() {
+		return fetch(this._url('schools'))
+		.then(util.mustBeOk)
+		.then(res => res.json())
+		.then(res => res.response.data[0])
+		.then(res => new School(res))
+	}
 }
 
 function getApiUrl (schoolid) {
@@ -195,6 +207,7 @@ export const VERSION = __VERSION__
 export {
 	Announcement,
 	Appointment,
+	School,
 	SessionInfo,
 	User,
 	Zermelo,
