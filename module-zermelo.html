@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Global - Documentation</title>
+    <title>zermelo - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -22,12 +22,12 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Announcement.html">Announcement</a></li><li><a href="Appointment.html">Appointment</a></li><li><a href="User.html">User</a></li><li><a href="Zermelo.html">Zermelo</a><ul class='methods'><li data-type='method'><a href="Zermelo.html#announcements">announcements</a></li><li data-type='method'><a href="Zermelo.html#appointments">appointments</a></li><li data-type='method'><a href="Zermelo.html#userInfo">userInfo</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#createSession">createSession</a></li><li><a href="global.html#loginBySessionInfo">loginBySessionInfo</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Announcement.html">Announcement</a></li><li><a href="Appointment.html">Appointment</a></li><li><a href="module-zermelo-Zermelo.html">Zermelo</a><ul class='methods'><li data-type='method'><a href="module-zermelo-Zermelo.html#_url">_url</a></li><li data-type='method'><a href="module-zermelo-Zermelo.html#announcements">announcements</a></li><li data-type='method'><a href="module-zermelo-Zermelo.html#appointments">appointments</a></li><li data-type='method'><a href="module-zermelo-Zermelo.html#userInfo">userInfo</a></li></ul></li><li><a href="SessionInfo.html">SessionInfo</a></li><li><a href="User.html">User</a></li></ul><h3>Modules</h3><ul><li><a href="module-zermelo.html">zermelo</a><ul class='members'><li data-type='member'><a href="module-zermelo.html#.VERSION">VERSION</a></li></ul><ul class='methods'><li data-type='method'><a href="module-zermelo.html#~createSession">createSession</a></li><li data-type='method'><a href="module-zermelo.html#~loginBySessionInfo">loginBySessionInfo</a></li></ul></li></ul>
 </nav>
 
 <div id="main">
     
-    <h1 class="page-title">Global</h1>
+    <h1 class="page-title">zermelo</h1>
     
 
     
@@ -39,9 +39,6 @@
 
 <header>
     
-        <h2>
-        
-        </h2>
         
     
 </header>
@@ -51,8 +48,45 @@
     
         
 
+        
+    
+    </div>
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="module-zermelo-Zermelo.html">Zermelo</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+     
+
+    
+
+    
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".VERSION"><span class="type-signature">(static, constant) </span>VERSION<span class="type-signature"> :String</span></h4>
+
+
+
+
+
 <dl class="details">
 
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="zermelo.js.html">zermelo.js</a>, <a href="zermelo.js.html#line189">line 189</a>
+    </li></ul></dd>
     
 
     
@@ -89,22 +123,29 @@
 
 
 
-        
+
+<div class="description">
+    <p>The version of the library.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">String</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
 
         
-    
-    </div>
-
-    
-
-    
-
-    
-
-     
-
-    
-
     
 
     
@@ -115,7 +156,7 @@
 
     
 
-    <h4 class="name" id="createSession"><span class="type-signature"></span>createSession<span class="signature">(schoolid, authcode)</span><span class="type-signature"> &rarr; {Promise.&lt;Object>}</span></h4>
+    <h4 class="name" id="~createSession"><span class="type-signature">(inner) </span>createSession<span class="signature">(schoolid, authcode)</span><span class="type-signature"> &rarr; {Promise.&lt;<a href="SessionInfo.html">SessionInfo</a>>}</span></h4>
 
     
 
@@ -127,7 +168,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="zermelo.js.html">zermelo.js</a>, <a href="zermelo.js.html#line144">line 144</a>
+        <a href="zermelo.js.html">zermelo.js</a>, <a href="zermelo.js.html#line158">line 158</a>
     </li></ul></dd>
     
 
@@ -271,7 +312,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;Object></span>
+<span class="param-type">Promise.&lt;<a href="SessionInfo.html">SessionInfo</a>></span>
 
 
     </dd>
@@ -285,7 +326,7 @@
 
     
 
-    <h4 class="name" id="loginBySessionInfo"><span class="type-signature"></span>loginBySessionInfo<span class="signature">(schoolid, sessionInfo)</span><span class="type-signature"> &rarr; {<a href="Zermelo.html">Zermelo</a>}</span></h4>
+    <h4 class="name" id="~loginBySessionInfo"><span class="type-signature">(inner) </span>loginBySessionInfo<span class="signature">(schoolid, sessionInfo)</span><span class="type-signature"> &rarr; {Zermelo}</span></h4>
 
     
 
@@ -297,7 +338,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="zermelo.js.html">zermelo.js</a>, <a href="zermelo.js.html#line133">line 133</a>
+        <a href="zermelo.js.html">zermelo.js</a>, <a href="zermelo.js.html#line147">line 147</a>
     </li></ul></dd>
     
 
@@ -400,7 +441,7 @@
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type"><a href="SessionInfo.html">SessionInfo</a></span>
 
 
             
@@ -441,7 +482,7 @@
     </dt>
     <dd>
         
-<span class="param-type"><a href="Zermelo.html">Zermelo</a></span>
+<span class="param-type">Zermelo</span>
 
 
     </dd>
@@ -468,7 +509,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu Sep 08 2016 21:12:12 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.1</a> on Fri Sep 09 2016 17:10:32 GMT+0200 (CEST) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>

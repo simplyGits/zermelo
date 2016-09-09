@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>user.js - Documentation</title>
+    <title>sessionInfo.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">user.js</h1>
+    <h1 class="page-title">sessionInfo.js</h1>
     
 
     
@@ -40,117 +40,28 @@
             <pre class="prettyprint source linenums"><code>/**
  * @private
  */
-class User {
+class SessionInfo {
 	/**
 	 * @param {Object} raw
 	 */
 	constructor(raw) {
-		/**
-		 * @type String
-		 * @readonly
-		 */
-		this.id = raw.code
-		/**
-		 * @type String[]
-		 * @readonly
-		 */
-		this.roles = raw.roles
-		/**
-		 * @type String
-		 * @readonly
-		 */
-		this.firstName = raw.firstName
-		/**
-		 * @type String
-		 * @readonly
-		 */
-		this.prefix = raw.prefix
-		/**
-		 * @type String
-		 * @readonly
-		 */
-		this.lastName = raw.lastName
+		const d = new Date()
+		d.setSeconds(d.getSeconds() + raw.expires_in)
 
 		/**
-		 * @type String
+		 * @type Date
 		 * @readonly
 		 */
-		this.email = raw.email
+		this.expireDate = d
 		/**
 		 * @type String
 		 * @readonly
 		 */
-		this.username = raw.username
-		/**
-		 * @type String
-		 * @readonly
-		 */
-		this.password = raw.password
-
-		/**
-		 * @type Boolean
-		 * @readonly
-		 */
-		this.isApplicationManager = raw.isApplicationManager
-		/**
-		 * @type Boolean
-		 * @readonly
-		 */
-		this.isSchoolScheduler = raw.isSchoolScheduler
-		/**
-		 * @type Boolean
-		 * @readonly
-		 */
-		this.isSchoolLeader = raw.isSchoolLeader
-		/**
-		 * @type Boolean
-		 * @readonly
-		 */
-		this.isStudentAdministrator = raw.isStudentAdministrator
-		/**
-		 * @type Boolean
-		 * @readonly
-		 */
-		this.isBranchLeader = raw.isBranchLeader
-		/**
-		 * @type Boolean
-		 * @readonly
-		 */
-		this.isTeamLeader = raw.isTeamLeader
-		/**
-		 * @type Boolean
-		 * @readonly
-		 */
-		this.isMentor = raw.isMentor
-		/**
-		 * @type Boolean
-		 * @readonly
-		 */
-		this.isParentTeacherNightScheduler = raw.isParentTeacherNightScheduler
-		/**
-		 * @type Boolean
-		 * @readonly
-		 */
-		this.isDean = raw.isDean
-		/**
-		 * @type Boolean
-		 * @readonly
-		 */
-		this.isStudent = raw.isStudent
-		/**
-		 * @type Boolean
-		 * @readonly
-		 */
-		this.isEmployee = raw.isEmployee
-		/**
-		 * @type Boolean
-		 * @readonly
-		 */
-		this.isFamilyMember = raw.isFamilyMember
+		this.accessToken = raw.access_token
 	}
 }
 
-export default User
+export default SessionInfo
 </code></pre>
         </article>
     </section>
