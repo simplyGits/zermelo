@@ -1,5 +1,9 @@
 /**
- * @method parseDate
+ * @module utils/date
+ * @private
+ */
+
+/**
  * @param {Number} n
  * @return {Date}
  */
@@ -8,7 +12,6 @@ export function parseDate (n) {
 }
 
 /**
- * @method date
  * @param {Date} date
  * @return {Date}
  */
@@ -17,7 +20,6 @@ export function date (date) {
 }
 
 /**
- * @method urlDate
  * @param {Date} date
  * @return {Number}
  */

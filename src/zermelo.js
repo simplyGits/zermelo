@@ -1,3 +1,7 @@
+/**
+ * @module zermelo
+ */
+
 import fetch from 'node-fetch'
 import FormData from 'form-data'
 import _ from 'lodash'
@@ -29,6 +33,13 @@ class Zermelo {
 		this.sessionInfo = sessionInfo
 	}
 
+	/**
+	 * Builds an url with `this.apiUrl` and the current's session accessToken,
+	 * while adding `slug`.
+	 * @private
+	 * @param {String} slug
+	 * @return {String}
+	 */
 	_url(slug) {
 		const c = /\?/.test(slug) ? '&' : '?'
 		return `${this.apiUrl}/${slug}${c}access_token=${this.sessionInfo.accessToken}`
@@ -170,6 +181,11 @@ export function createSession (schoolid, authcode) {
 	})
 }
 
+/**
+ * The version of the library.
+ * @type String
+ * @readonly
+ */
 export const VERSION = __VERSION__
 
 export {

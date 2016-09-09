@@ -1,7 +1,7 @@
 /**
  * @private
  */
-export default class SessionInfo {
+class SessionInfo {
 	/**
 	 * @param {Object} raw
 	 */
@@ -21,3 +21,5 @@ export default class SessionInfo {
 		this.accessToken = raw.access_token
 	}
 }
+
+export default SessionInfo
