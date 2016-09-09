@@ -5,7 +5,7 @@ printf '%s\n' \
 	"/**" \
 	" * @private" \
 	" */" \
-	"export default class $classname {" \
+	"class $classname {" \
 	"	/**" \
 	"	 * @param {Object} raw" \
 	"	 */" \
