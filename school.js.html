@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>announcement.js - Documentation</title>
+    <title>school.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -27,7 +27,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">announcement.js</h1>
+    <h1 class="page-title">school.js</h1>
     
 
     
@@ -37,45 +37,28 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import * as util from './util.js'
-
-/**
+            <pre class="prettyprint source linenums"><code>/**
  * @private
  */
-class Announcement {
+class School {
 	/**
 	 * @param {Object} raw
 	 */
 	constructor(raw) {
 		/**
-		 * @type String
+		 * @type Number
 		 * @readonly
 		 */
 		this.id = raw.id
 		/**
-		 * @type Date
-		 * @readonly
-		 */
-		this.start = util.parseDate(raw.start)
-		/**
-		 * @type Date
-		 * @readonly
-		 */
-		this.end = util.parseDate(raw.end)
-		/**
 		 * @type String
 		 * @readonly
 		 */
-		this.title = raw.title
-		/**
-		 * @type String
-		 * @readonly
-		 */
-		this.text = raw.text
+		this.name = raw.name
 	}
 }
 
-export default Announcement
+export default School
 </code></pre>
         </article>
     </section>
