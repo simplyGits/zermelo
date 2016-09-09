@@ -139,7 +139,7 @@ class Zermelo {
 		.then(util.mustBeOk)
 		.then(res => res.json())
 		.then(res => res.response.data[0])
-		.then(res => Object.setPrototypeOf(res, User.prototype))
+		.then(res => new User(res))
 	}
 }
 
