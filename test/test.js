@@ -4,19 +4,26 @@ import { expect } from 'chai'
 import * as zermelo from '../src/zermelo'
 import * as util from '../src/util.js'
 
-let credentials = {}
+let info
 try {
-	credentials = require('./credentials.json')
+	info = require('./credentials.json')
 } catch (e) { // For Travis CI we use environment variables.
-	credentials.schoolid = process.env.TEST_SCHOOLID
-	credentials.sessionInfo = {
-		access_token: process.env.TEST_ACCESS_TOKEN,
-		token_type: 'bearer',
-		expires_in: 57600,
+	info = {
+		schoolid: process.env.TEST_SCHOOLID,
+		accessToken: process.env.TEST_ACCESS_TOKEN,
 	}
 }
-if (!credentials.schoolid || !credentials.sessionInfo) {
+
+if (!info.schoolid || !info.accessToken) {
 	throw new Error('No login information found.')
+}
+const credentials = {
+	schoolid: info.schoolid,
+	sessionInfo: new zermelo.SessionInfo({
+		access_token: info.accessToken,
+		token_type: 'bearer',
+		expires_in: 57600,
+	}),
 }
 
 describe('Zermelo', function () {
@@ -32,6 +39,7 @@ describe('Zermelo', function () {
 
 	it('should expose a correct object', function () {
 		expect(z).to.be.an.instanceof(zermelo.Zermelo)
+		expect(z.sessionInfo).to.be.an.instanceof(zermelo.SessionInfo)
 	})
 
 	describe('announcement', function () {

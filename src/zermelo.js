@@ -3,6 +3,7 @@ import FormData from 'form-data'
 import _ from 'lodash'
 import Announcement from './announcement.js'
 import Appointment from './appointment.js'
+import SessionInfo from './sessionInfo.js'
 import User from './user.js'
 import * as util from './util.js'
 
@@ -12,23 +13,25 @@ import * as util from './util.js'
 class Zermelo {
 	/**
 	 * @param {String} apiUrl
-	 * @param {Object} sessionInfo
-	 * 	@param {Number} sessionInfo.expires_in
-	 * 	@param {String} sessionInfo.access_token
+	 * @param {SessionInfo} sessionInfo
 	 */
 	constructor(apiUrl, sessionInfo) {
+		/**
+		 * @type String
+		 * @readonly
+		 * @private
+		 */
 		this.apiUrl = apiUrl
-
-		const d = new Date()
-		d.setSeconds(d.getSeconds() + sessionInfo.expires_in)
-		this.expireDate = d
-
-		this.accessToken = sessionInfo.access_token
+		/**
+		 * @type SessionInfo
+		 * @readonly
+		 */
+		this.sessionInfo = sessionInfo
 	}
 
 	_url(slug) {
 		const c = /\?/.test(slug) ? '&' : '?'
-		return `${this.apiUrl}/${slug}${c}access_token=${this.accessToken}`
+		return `${this.apiUrl}/${slug}${c}access_token=${this.sessionInfo.accessToken}`
 	}
 
 	/**
@@ -133,7 +136,7 @@ function getApiUrl (schoolid) {
 /**
  * @method loginBySessionInfo
  * @param {String} schoolid
- * @param {Object} sessionInfo
+ * @param {SessionInfo} sessionInfo
  * @return {Zermelo}
  */
 export function loginBySessionInfo (schoolid, sessionInfo) {
@@ -145,7 +148,7 @@ export function loginBySessionInfo (schoolid, sessionInfo) {
  * @method createSession
  * @param {String} schoolid
  * @param {String} authcode
- * @return {Promise<Object>}
+ * @return {Promise<SessionInfo>}
  */
 export function createSession (schoolid, authcode) {
 	const apiUrl = getApiUrl(schoolid)
@@ -161,6 +164,7 @@ export function createSession (schoolid, authcode) {
 		body: form,
 	})
 	.then(r => r.json())
+	.then(r => new SessionInfo(r))
 	.catch(() => {
 		throw new Error('invalid authcode')
 	})
@@ -171,6 +175,7 @@ export const VERSION = __VERSION__
 export {
 	Announcement,
 	Appointment,
+	SessionInfo,
 	User,
 	Zermelo,
 }
