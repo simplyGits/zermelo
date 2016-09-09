@@ -62,6 +62,7 @@ class Zermelo {
 
 		const url = this._url(`announcements?user=~me${slug}`)
 		return fetch(url)
+		.then(util.mustBeOk)
 		.then(res => res.json())
 		.then(res => res.response.data)
 		.then(items => items.map(a => new Announcement(a)))
@@ -123,6 +124,7 @@ class Zermelo {
 		}
 
 		return fetch(this._url(url))
+		.then(util.mustBeOk)
 		.then(res => res.json())
 		.then(res => res.response.data)
 		.then(items => items.map(i => new Appointment(i)))
@@ -134,6 +136,7 @@ class Zermelo {
 	 */
 	userInfo() {
 		return fetch(this._url('users/~me'))
+		.then(util.mustBeOk)
 		.then(res => res.json())
 		.then(res => res.response.data[0])
 		.then(res => Object.setPrototypeOf(res, User.prototype))
@@ -174,6 +177,7 @@ export function createSession (schoolid, authcode) {
 		method: 'POST',
 		body: form,
 	})
+	.then(util.mustBeOk)
 	.then(r => r.json())
 	.then(r => new SessionInfo(r))
 	.catch(() => {
