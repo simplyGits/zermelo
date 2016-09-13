@@ -76,7 +76,8 @@ class Zermelo {
 
 	/**
 	 * @param {Date} from Time will be ignored.
-	 * @param {Date} [to] Time will be ignored. If not given, from+1day will be used.
+	 * @param {Date} [to] Time will be ignored. If not given, `from + 1 day`
+	 * will be used.
 	 * @param {Object} [options={}]
 	 * 	@param {Boolean} [options.onlyBase=false] If true only base
 	 * 	apopointments are given.
