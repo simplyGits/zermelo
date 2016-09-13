@@ -32,7 +32,7 @@ class Announcement {
 		 * @type String
 		 * @readonly
 		 */
-		this.text = raw.text
+		this.content = raw.text
 	}
 }
 
