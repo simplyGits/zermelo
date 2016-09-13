@@ -1,7 +1,5 @@
 # zermelo.js
 
-==========
-
 [![Build Status](https://travis-ci.org/simplyGits/zermelo.svg?branch=master)](https://travis-ci.org/simplyGits/zermelo)
 [![NPM](https://nodei.co/npm/zermelo.js.png?mini=true)](https://nodei.co/npm/zermelo.js/)
 
