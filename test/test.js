@@ -120,5 +120,17 @@ describe('util', function () {
 			expect(parsed).to.be.a('Date')
 			expect(parsed.getTime()).to.equal(d.getTime())
 		})
+
+		it ('should correctly check if dates are valid', function () {
+			const cases = [
+				[ 'kaas', false ],
+				[ '1337', true ],
+				[ 1337, true ],
+			]
+			for (const [ key, val ] of cases) {
+				const d = new Date(key)
+				expect(util.isValidDate(d)).to.equal(val)
+			}
+		})
 	})
 })

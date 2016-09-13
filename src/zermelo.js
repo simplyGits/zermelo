@@ -56,6 +56,10 @@ class Zermelo {
 	announcements({ current = true, from, to } = {}) {
 		let slug = ''
 		if (from != null && to != null) {
+			if (!util.isValidDate(from) || !util.isValidDate(to)) {
+				return Promise.reject(new Error('from and to must be valid dates'))
+			}
+
 			slug += `&start=${util.urlDate(from)}&end=${util.urlDate(to)}`
 		} else if (current) {
 			slug += '&current=true'
@@ -93,6 +97,10 @@ class Zermelo {
 		if (to == null) {
 			to = new Date(from)
 			to.setDate(to.getDate() + 1)
+		}
+
+		if (!util.isValidDate(from) || !util.isValidDate(to)) {
+			return Promise.reject(new Error('from and to must be valid dates'))
 		}
 
 		const options = _.find(arguments, _.isPlainObject) || {}
