@@ -26,7 +26,7 @@ class Zermelo {
 		 * @readonly
 		 * @private
 		 */
-		this.apiUrl = apiUrl
+		this._apiUrl = apiUrl
 		/**
 		 * @type SessionInfo
 		 * @readonly
@@ -35,7 +35,7 @@ class Zermelo {
 	}
 
 	/**
-	 * Builds an url with `this.apiUrl` and the current's session accessToken,
+	 * Builds an url with `this._apiUrl` and the current's session accessToken,
 	 * while adding `slug`.
 	 * @private
 	 * @param {String} slug
@@ -43,7 +43,7 @@ class Zermelo {
 	 */
 	_url(slug) {
 		const c = /\?/.test(slug) ? '&' : '?'
-		return `${this.apiUrl}/${slug}${c}access_token=${this.sessionInfo.accessToken}`
+		return `${this._apiUrl}/${slug}${c}access_token=${this.sessionInfo.accessToken}`
 	}
 
 	/**
