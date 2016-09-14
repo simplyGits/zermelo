@@ -79,17 +79,17 @@ class Zermelo {
 	 * @param {Date} [to] Time will be ignored. If not given, `from + 1 day`
 	 * will be used.
 	 * @param {Object} [options={}]
-	 * 	@param {Boolean} [options.onlyBase=false] If true only base
+	 * 	@param {Boolean} [options.onlyBase=false] If `true` only base
 	 * 	apopointments are given.
-	 * 	@param {Boolean} [options.latest] If true only the latest appointments
-	 * 	are given, if false only the non-latest appointments are given, and when
-	 * 	undefined this option is ignored.
-	 * 	@param {Boolean} [options.cancelled] If true only cancelled appointments
-	 * 	are given, if false only non-cancelled appointments are given, and when
-	 * 	undefined this option is ignored.
+	 * 	@param {Boolean} [options.latest] If `true` only the latest appointments
+	 * 	are given, if `false` only the non-latest appointments are given, and
+	 * 	when `undefined` this option is ignored.
+	 * 	@param {Boolean} [options.cancelled] If `true` only cancelled
+	 * 	appointments are given, if `false` only non-cancelled appointments are
+	 * 	given, and when `undefined` this option is ignored.
 	 * 	@param {Boolean} [options.includeHidden=false] Whether or not to include
 	 * 	hidden appointments.
-	 * 	@param {Date} [options.modifiedSince] When this is not undefined,
+	 * 	@param {Date} [options.modifiedSince] When this is not `undefined`,
 	 * 	`options.latest` will be set to undefined.
 	 * @return {Promise<Appointment[]>}
 	 */
