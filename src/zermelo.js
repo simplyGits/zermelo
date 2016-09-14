@@ -49,8 +49,8 @@ class Zermelo {
 	/**
 	 * @param {Object} [options={}]
 	 * 	@param {Boolean} [options.current=true]
-	 * 	@param {Date} [options.from]
-	 * 	@param {Date} [options.to]
+	 * 	@param {Date} [options.from] Time is ignored.
+	 * 	@param {Date} [options.to] Time is ignored.
 	 * @return {Promise<Announcement[]>}
 	 */
 	announcements({ current = true, from, to } = {}) {
@@ -59,6 +59,9 @@ class Zermelo {
 			if (!util.isValidDate(from) || !util.isValidDate(to)) {
 				return Promise.reject(new Error('from and to must be valid dates'))
 			}
+
+			from = util.date(from)
+			to = util.date(to)
 
 			slug += `&start=${util.urlDate(from)}&end=${util.urlDate(to)}`
 		} else if (current) {
