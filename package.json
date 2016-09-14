@@ -1,6 +1,6 @@
 {
   "name": "zermelo.js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "a node implementation of the zermelo api",
   "main": "lib/zermelo.js",
   "engines": {
