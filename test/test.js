@@ -58,8 +58,7 @@ describe('Zermelo', function () {
 
 	describe('appointment', function () {
 		it('should fetch appointments', function () {
-			const d = util.date(new Date)
-			return z.appointments(d).then(r => {
+			return z.appointments(new Date).then(r => {
 				expect(r).to.be.a('array')
 
 				for (const appointment of r) {
@@ -69,8 +68,7 @@ describe('Zermelo', function () {
 		})
 
 		it('should fetch only cancelled appointments correctly', function () {
-			const d = util.date(new Date)
-			return z.appointments(d, {
+			return z.appointments(new Date, {
 				cancelled: true,
 			}).then(r => {
 				for (const appointment of r) {

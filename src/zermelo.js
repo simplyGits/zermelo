@@ -78,9 +78,8 @@ class Zermelo {
 	}
 
 	/**
-	 * @param {Date} from Time will be ignored.
-	 * @param {Date} [to] Time will be ignored. If not given, `from + 1 day`
-	 * will be used.
+	 * @param {Date} from
+	 * @param {Date} [to=from + 1 day]
 	 * @param {Object} [options={}]
 	 * 	@param {Boolean} [options.onlyBase=false] If `true` only base
 	 * 	apopointments are given.
@@ -94,6 +93,8 @@ class Zermelo {
 	 * 	hidden appointments.
 	 * 	@param {Date} [options.modifiedSince] When this is not `undefined`,
 	 * 	`options.latest` will be set to undefined.
+	 * 	@param {Boolean} [options.ignoreTime=true] If `true` the time is set to
+	 * 	00:00 for both `from` and `to`.
 	 * @return {Promise<Appointment[]>}
 	 */
 	appointments() {
@@ -114,7 +115,13 @@ class Zermelo {
 			cancelled,
 			includeHidden = false,
 			modifiedSince,
+			ignoreTime = true,
 		} = options
+
+		if (ignoreTime) {
+			from = util.date(from)
+			to = util.date(to)
+		}
 
 		let url = `appointments?user=~me&start=${util.urlDate(from)}&end=${util.urlDate(to)}`
 
