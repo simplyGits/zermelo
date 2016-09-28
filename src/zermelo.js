@@ -7,6 +7,7 @@ import FormData from 'form-data'
 import _ from 'lodash'
 import Announcement from './announcement.js'
 import Appointment from './appointment.js'
+import AuthError from './authError.js'
 import School from './school.js'
 import SessionInfo from './sessionInfo.js'
 import User from './user.js'
@@ -212,7 +213,7 @@ export function createSession (schoolid, authcode) {
 	.then(r => r.json())
 	.then(r => new SessionInfo(r))
 	.catch(() => {
-		throw new Error('invalid authcode')
+		throw new AuthError('invalid authcode')
 	})
 }
 
@@ -226,6 +227,7 @@ export const VERSION = __VERSION__
 export {
 	Announcement,
 	Appointment,
+	AuthError,
 	School,
 	SessionInfo,
 	User,
