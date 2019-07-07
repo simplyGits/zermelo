@@ -9,7 +9,8 @@
   "dependencies": {
     "form-data": "^1.0.1",
     "lodash": "^4.15.0",
-    "node-fetch": "^1.6.0"
+    "node-fetch": "^1.6.0",
+    "snyk": "^1.192.3"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
@@ -21,9 +22,10 @@
   },
   "scripts": {
     "build": "babel -s false -d lib/ src/",
-    "prepublish": "npm run build",
+    "prepublish": "npm run snyk-protect; npm run build",
     "test": "mocha --compilers js:babel-register",
-    "docs": "jsdoc --configure .jsdoc.json --verbose"
+    "docs": "jsdoc --configure .jsdoc.json --verbose",
+    "snyk-protect": "snyk protect"
   },
   "repository": {
     "type": "git",
@@ -38,5 +40,6 @@
     "url": "https://github.com/simplyGits/zermelo/issues"
   },
   "homepage": "https://github.com/simplyGits/zermelo#readme",
-  "tonicExampleFilename": "tonicdevExample.js"
+  "tonicExampleFilename": "tonicdevExample.js",
+  "snyk": true
 }
