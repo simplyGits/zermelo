@@ -240,7 +240,7 @@ export function createSessionByPassword (schoolid, username, password) {
 
 	return fetch(url, {
 		method: 'POST',
-		body: form
+		body: form,
 	})
 	.then(util.mustBeOk)
 	.then(r => r.text())
