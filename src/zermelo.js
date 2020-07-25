@@ -218,6 +218,55 @@ export function createSession (schoolid, authcode) {
 }
 
 /**
+ * @method createSessionByPassword
+ * @param {String} schoolid
+ * @param {String} username
+ * @param {String} password
+ * @return {Promise<SessionInfo>}
+ */
+export function createSessionByPassword (schoolid, username, password) {
+	const apiUrl = getApiUrl(schoolid)
+	const url = `${apiUrl}/oauth`
+
+	const form = new FormData()
+	form.append('username', username)
+	form.append('password', password)
+	form.append('client_id', 'OAuthPage')
+	form.append('redirect_uri', '/main/')
+	form.append('scope', '')
+	form.append('state', '')
+	form.append('response_type', 'code')
+	form.append('tenant', schoolid)
+
+	return fetch(url, {
+		method: 'POST',
+		body: form
+	})
+	.then(util.mustBeOk)
+	.then(r => r.text())
+	.then(r => r.match(/code=(.+)&expires/)[1])
+	.then(r => {
+		const url = `${apiUrl}/oauth/token`
+
+		const form = new FormData()
+		form.append('grant_type', 'code')
+		form.append('code', r)
+
+		return fetch(url, {
+			method: 'POST',
+			body: form,
+		})
+	})
+	.then(util.mustBeOk)
+	.then(r => r.json())
+	.then(r => new SessionInfo(r))
+	.catch((e) => {
+		console.log(e);
+		throw new AuthError('invalid username / password')
+	})
+}
+
+/**
  * The version of the library.
  * @type String
  * @readonly
