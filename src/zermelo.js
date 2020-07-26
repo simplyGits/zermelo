@@ -260,8 +260,7 @@ export function createSessionByPassword (schoolid, username, password) {
 	.then(util.mustBeOk)
 	.then(r => r.json())
 	.then(r => new SessionInfo(r))
-	.catch((e) => {
-		console.log(e);
+	.catch(() => {
 		throw new AuthError('invalid username / password')
 	})
 }
